@@ -1,0 +1,248 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bgd.optimizers module &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bgd.utils module" href="bgd.utils.html" />
+    <link rel="prev" title="bgd.operators module" href="bgd.operators.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.utils.html" title="bgd.utils module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bgd.operators.html" title="bgd.operators module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" accesskey="U">bgd package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-bgd.optimizers">
+<span id="bgd-optimizers-module"></span><h1>bgd.optimizers module<a class="headerlink" href="#module-bgd.optimizers" title="Permalink to this headline">¶</a></h1>
+<p>This module contains all the optimizers that are implemented.
+Any optimizer implemented needs to inherit from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.optimizers.Optimizer</span></code> and to implement its abstract
+method (<code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>).</p>
+<dl class="class">
+<dt id="bgd.optimizers.MomentumOptimizer">
+<em class="property">class </em><code class="descclassname">bgd.optimizers.</code><code class="descname">MomentumOptimizer</code><span class="sig-paren">(</span><em>learning_rate=0.005</em>, <em>momentum=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/optimizers.html#MomentumOptimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.optimizers.MomentumOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.optimizers.Optimizer</span></code></p>
+<p>Simple first order optimizer with momentum support.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Constant steplength.</li>
+<li><strong>momentum</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Persistence of previous gradient vectors. Old vectors
+are re-used to compute the new search direction,
+with respect to the momentum value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="bgd.optimizers.MomentumOptimizer.previous_grad">
+<code class="descname">previous_grad</code><a class="headerlink" href="#bgd.optimizers.MomentumOptimizer.previous_grad" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code> – Gradient vector at previous iteration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.optimizers.AdamOptimizer">
+<em class="property">class </em><code class="descclassname">bgd.optimizers.</code><code class="descname">AdamOptimizer</code><span class="sig-paren">(</span><em>learning_rate=0.001</em>, <em>beta_1=0.9</em>, <em>beta_2=0.999</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/optimizers.html#AdamOptimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.optimizers.AdamOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.optimizers.Optimizer</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Constant steplength.</li>
+<li><strong>beta_1</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Exponential decay rate of the moving average of the gradient.</li>
+<li><strong>beta_2</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Exponential decay rate of the moving average of th.</li>
+<li><strong>epsilon</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Constant for numeric stability.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="bgd.optimizers.AdamOptimizer.step">
+<code class="descname">step</code><a class="headerlink" href="#bgd.optimizers.AdamOptimizer.step" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> – Current iteration.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.AdamOptimizer.moment_1">
+<code class="descname">moment_1</code><a class="headerlink" href="#bgd.optimizers.AdamOptimizer.moment_1" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code> – Last 1st moment vector.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.AdamOptimizer.moment_2">
+<code class="descname">moment_2</code><a class="headerlink" href="#bgd.optimizers.AdamOptimizer.moment_2" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code> – Last 2nd moment vector.</p>
+</dd></dl>
+
+<p class="rubric">References</p>
+<dl class="docutils">
+<dt>ADAM: A Method For Stochastic Optimization</dt>
+<dd>Diederik P. Kingma and Jimmy Lei Ba
+<a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">https://arxiv.org/pdf/1412.6980.pdf</a></dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.optimizers.LBFGS">
+<em class="property">class </em><code class="descclassname">bgd.optimizers.</code><code class="descname">LBFGS</code><span class="sig-paren">(</span><em>m=10</em>, <em>epsilon=0.01</em>, <em>first_order_optimizer=&lt;bgd.optimizers.AdamOptimizer object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/optimizers.html#LBFGS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.optimizers.LBFGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.optimizers.Optimizer</span></code></p>
+<p>Quasi-newtonian optimizer with limited memory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>m</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) – Memory size.</li>
+<li><strong>epsilon</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, optional) – Constant for numeric stability.</li>
+<li><strong>first_order_optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – First order optimizer used to approximate the Hessian product.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="bgd.optimizers.LBFGS.k">
+<code class="descname">k</code><a class="headerlink" href="#bgd.optimizers.LBFGS.k" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> – Current iteration of L-BFGS.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.LBFGS.previous_grad">
+<code class="descname">previous_grad</code><a class="headerlink" href="#bgd.optimizers.LBFGS.previous_grad" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code> – Gradient vector at iteration k-1.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.LBFGS.y">
+<code class="descname">y</code><a class="headerlink" href="#bgd.optimizers.LBFGS.y" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – List of m last gradient differences.
+y_t = grad_{t+1} - grad_t</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.LBFGS.s">
+<code class="descname">s</code><a class="headerlink" href="#bgd.optimizers.LBFGS.s" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – List of m last update vectors.
+s_t = H * grad * steplength, where H is the
+Hessian matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.optimizers.LBFGS.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#bgd.optimizers.LBFGS.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – List of m last alpha coefficients
+alpha_i = rho_i * s_i.T * grad,
+where rho_i = 1. / (s_i.T * y_i).</p>
+</dd></dl>
+
+<p class="rubric">References</p>
+<dl class="docutils">
+<dt>Updating Quasi-Newton Matrices with Limited Storage</dt>
+<dd>Nocedal, J. (1980)
+Mathematics of Computation. 35 (151): 773–782</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bgd.operators.html"
+                        title="previous chapter">bgd.operators module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bgd.utils.html"
+                        title="next chapter">bgd.utils module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bgd.optimizers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.utils.html" title="bgd.utils module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bgd.operators.html" title="bgd.operators module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" >bgd package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

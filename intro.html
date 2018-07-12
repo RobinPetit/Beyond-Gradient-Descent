@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction and Notations &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Backpropagation" href="backprop.html" />
+    <link rel="prev" title="Mathematical Framework" href="mathematical_framework.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="backprop.html" title="Backpropagation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mathematical_framework.html" title="Mathematical Framework"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="mathematical_framework.html" accesskey="U">Mathematical Framework</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-and-notations">
+<h1>Introduction and Notations<a class="headerlink" href="#introduction-and-notations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<p>Starting from here, we assume that <span class="math notranslate nohighlight">\(\mathcal D = \{(x^{(i)}, y^{(i)}\}_{i=1}^N\)</span>
+is the dataset such that:</p>
+<div class="math notranslate nohighlight">
+\[\forall i \in \{1, \ldots, N\} : x^{(i)} \in \mathbb R^n \text{ and } y^{(i)} \in \mathbb R^m.\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal N\)</span> denote the neural net function:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal N : \mathbb R^n \to \mathbb R^m : x \mapsto \mathcal N(x).\]</div>
+<p>For <span class="math notranslate nohighlight">\(X \in \mathbb R^{\ell \times n}\)</span> a matrix of samples (each row is a
+sample in <span class="math notranslate nohighlight">\(\mathcal D\)</span>), we naturally extend <span class="math notranslate nohighlight">\(\mathcal N\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal N(X) = [\mathcal N(X_i)]_{i=1}^\ell \in \mathbb R^{\ell \times m}.\]</div>
+</div>
+<div class="section" id="neural-stack">
+<h2>Neural Stack<a class="headerlink" href="#neural-stack" title="Permalink to this headline">¶</a></h2>
+<p>A linear neural network (LNN for short, also called neural stack, see
+<a class="reference internal" href="bgd.nn.html#bgd.nn.NeuralStack" title="bgd.nn.NeuralStack"><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.nn.NeuralStack</span></code></a>) is a composition of a list of layers. Let’s denote
+the number of layers by <span class="math notranslate nohighlight">\(K \in \mathbb N^*\)</span>. For <span class="math notranslate nohighlight">\(k \in \{1, \ldots, K\}\)</span>,
+the <span class="math notranslate nohighlight">\(k\)</span> th layer is denoted by <span class="math notranslate nohighlight">\(\Lambda^{(k)}\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\Lambda^{(k)}_{\theta^{(k)}} : \mathbb R^{n^{(k-1)}} \to \mathbb R^{n^{(k)}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta^{(k)}\)</span> denotes the parameters of layer <span class="math notranslate nohighlight">\(k\)</span> and is a
+tensor or rank <span class="math notranslate nohighlight">\(r^{(k)} \in \mathbb N\)</span> (0 if non-parametrized layer) and
+dimension <span class="math notranslate nohighlight">\(\delta^{(k)} \in \mathbb {N^*}^{r^{(k)}}\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\theta^{(k)} \in \mathbb R^{\delta^{(k)}} := \mathbb R^{\prod_{i=1}^{r^{(k)}}\delta^{(k)}_i},\]</div>
+<p><span class="math notranslate nohighlight">\(n^{(j)}\)</span> denotes the dimension of the (tensor) output of the <span class="math notranslate nohighlight">\(j\)</span> th layer.
+For sake of notation, we also introduce <span class="math notranslate nohighlight">\(n^{(0)} = n\)</span>.</p>
+<p>The neural net is therefore defined as the composition of all the layers:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal N(X) := \Big(\bigcirc_{k=1}^K\Lambda_{\theta^{(k)}}^{(k)}\Big)(X),\]</div>
+<p>where the composition must be read <span class="math notranslate nohighlight">\(\Lambda^{(K)}_{\theta^{(k)}} \circ \ldots \circ \Lambda^{(1)}_{\theta^{(1)}}\)</span>
+so that dimensions stay consistent.</p>
+</div>
+<div class="section" id="miscelanous-notations">
+<h2>Miscelanous Notations<a class="headerlink" href="#miscelanous-notations" title="Permalink to this headline">¶</a></h2>
+<p>We also write <span class="math notranslate nohighlight">\(X \in \mathbb R^{\ell \times n}\)</span> for a batch input of the LNN.</p>
+<p>For sake of convenience, for <span class="math notranslate nohighlight">\(k \in \{1, \ldots, K\}\)</span>, we write:
+<span class="math notranslate nohighlight">\(X^{(k)} := \Lambda_{\theta^{(k)}}^{(k)}(X^{(k-1)})\)</span> and <span class="math notranslate nohighlight">\(X^{(0)} := X\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(X\)</span> a rank <span class="math notranslate nohighlight">\(n\)</span> tensor and <span class="math notranslate nohighlight">\(\sigma \in \mathfrak S_n\)</span> a permutation on
+<span class="math notranslate nohighlight">\(n\)</span> elements, we introduce the following notation:</p>
+<div class="math notranslate nohighlight">
+\[\pi_\sigma X := \pi_\sigma(X) := [X_{\sigma\alpha}]_\alpha,\]</div>
+<p>an extension of the transposition of matrices: if <span class="math notranslate nohighlight">\(\sigma = \tau_{i,j}\)</span>, then
+<span class="math notranslate nohighlight">\(\pi_\sigma X\)</span> is still a rank <span class="math notranslate nohighlight">\(n\)</span> tensor but whose indices <span class="math notranslate nohighlight">\(i\)</span>
+and <span class="math notranslate nohighlight">\(j\)</span> have been swapped.</p>
+</div>
+<div class="section" id="cost-function">
+<h2>Cost Function<a class="headerlink" href="#cost-function" title="Permalink to this headline">¶</a></h2>
+<p>A cost function (or <em>loss function</em> which is equivalent) is a function:</p>
+<div class="math notranslate nohighlight">
+\[L : \mathbb R^{m} \times \mathbb R^m \to \mathbb R^+ : (y, \hat y) \mapsto L(y, \hat y)\]</div>
+<p>that represents the error between ground truth <span class="math notranslate nohighlight">\(y\)</span> and estimation <span class="math notranslate nohighlight">\(\hat y = \mathcal N(x)\)</span>.
+The training phase will attempt to reach the minimum of the loss <span class="math notranslate nohighlight">\(L\)</span> by adapting the
+parameters of each layer.</p>
+<p>We introduce the notation:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal L : \mathbb R^{\ell \times n} \to \mathbb R^+ : X \mapsto L(\mathcal N(X), \mathbf y),\]</div>
+<p>for the loss computed on samples of the dataset <span class="math notranslate nohighlight">\(\mathcal D\)</span> where <span class="math notranslate nohighlight">\(\mathbf y\)</span>
+is the label vector associated to samples <span class="math notranslate nohighlight">\(X\)</span> (i.e. <span class="math notranslate nohighlight">\(\mathbf y = [y^{(i_j)}]_{j=1}^\ell\)</span>
+for <span class="math notranslate nohighlight">\(i_j \in \{1, \ldots, N\}\)</span> such that <span class="math notranslate nohighlight">\(X = [x^{(i_j)}]_{j=1}^\ell\)</span>).</p>
+<p>The list of loss functions implemented in BGD can be found in the <a class="reference internal" href="bgd.cost.html#module-bgd.cost" title="bgd.cost"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bgd.cost</span></code></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction and Notations</a><ul>
+<li><a class="reference internal" href="#dataset">Dataset</a></li>
+<li><a class="reference internal" href="#neural-stack">Neural Stack</a></li>
+<li><a class="reference internal" href="#miscelanous-notations">Miscelanous Notations</a></li>
+<li><a class="reference internal" href="#cost-function">Cost Function</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mathematical_framework.html"
+                        title="previous chapter">Mathematical Framework</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="backprop.html"
+                        title="next chapter">Backpropagation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/intro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="backprop.html" title="Backpropagation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mathematical_framework.html" title="Mathematical Framework"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="mathematical_framework.html" >Mathematical Framework</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

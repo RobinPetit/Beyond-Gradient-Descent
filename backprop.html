@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Backpropagation &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Layers" href="layers.html" />
+    <link rel="prev" title="Introduction and Notations" href="intro.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="layers.html" title="Layers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction and Notations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="mathematical_framework.html" accesskey="U">Mathematical Framework</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="backpropagation">
+<h1>Backpropagation<a class="headerlink" href="#backpropagation" title="Permalink to this headline">¶</a></h1>
+<p>Backpropagation is an iterative process aiming to find the optimum of a cost (loss) function.</p>
+<p>Each parameter <span class="math notranslate nohighlight">\(\theta^{(k)}_\alpha\)</span> is iteratively updated with the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\theta^{(k)}_\alpha \leftarrow \theta^{(k)}_\alpha - \eta\partial_{\theta^{(k)}_\alpha}\mathcal L(X).\]</div>
+<p>This partial derivative can be computed using the chain rule:</p>
+<div class="math notranslate nohighlight">
+\[\partial_{\theta^{(k)}_\alpha}\mathcal L = \sum_\beta\partial_{X^{(k)}_\beta}\mathcal L\partial_{\theta^{(k)}_\alpha}X^{(k)}_\beta.\]</div>
+<p>For the sake of convenience, we write <span class="math notranslate nohighlight">\(\varepsilon^{(k)} = \nabla_{X^{(k)}}\mathcal L\)</span>, which is
+the signal back-propagated by layer <span class="math notranslate nohighlight">\(k\)</span> to layer <span class="math notranslate nohighlight">\(k-1\)</span>.</p>
+<p>Therefore, each layer needs to compute the derivative of the loss w.r.t. its parameters in order to move
+towards the optimum, but each layer also needs to compute the derivative of the loss w.r.t. its input, i.e.
+<span class="math notranslate nohighlight">\(\nabla_{X^{(k)}}\)</span>.</p>
+<p>That’s where the name <em>back propagation</em> comes from: each layer needs to propagate a signal to the layer before
+it so that all the derivatives w.r.t. parameters can be computed properly.</p>
+<p>The backpropagation starts by taking the derivative of the loss w.r.t. the predictions:
+<span class="math notranslate nohighlight">\(\\nabla_{\hat y}\mathcal L = \nabla_{X^{(K)}}\mathcal L = \varepsilon^{(K)}\)</span>.
+This is why the cost functions defined in <a class="reference internal" href="bgd.cost.html#module-bgd.cost" title="bgd.cost"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bgd.cost</span></code></a> need to have a <code class="xref py py-obj docutils literal notranslate"><span class="pre">_grad</span></code> method defined:
+differentiation is automatized.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction and Notations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="layers.html"
+                        title="next chapter">Layers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/backprop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="layers.html" title="Layers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction and Notations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="mathematical_framework.html" >Mathematical Framework</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

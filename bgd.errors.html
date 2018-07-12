@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bgd.errors module &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bgd.initializers module" href="bgd.initializers.html" />
+    <link rel="prev" title="bgd.cost module" href="bgd.cost.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.initializers.html" title="bgd.initializers module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bgd.cost.html" title="bgd.cost module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" accesskey="U">bgd package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-bgd.errors">
+<span id="bgd-errors-module"></span><h1>bgd.errors module<a class="headerlink" href="#module-bgd.errors" title="Permalink to this headline">¶</a></h1>
+<p>This module contains all the exceptions that are specific
+to BGD.</p>
+<dl class="exception">
+<dt id="bgd.errors.RequiredComponentError">
+<em class="property">exception </em><code class="descclassname">bgd.errors.</code><code class="descname">RequiredComponentError</code><a class="reference internal" href="_modules/bgd/errors.html#RequiredComponentError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.errors.RequiredComponentError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised when a <a class="reference internal" href="bgd.nn.html#bgd.nn.NeuralStack" title="bgd.nn.NeuralStack"><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.nn.NeuralStack</span></code></a>
+hasn’t been setup properly and at least a component is missing.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="bgd.errors.WrongComponentTypeError">
+<em class="property">exception </em><code class="descclassname">bgd.errors.</code><code class="descname">WrongComponentTypeError</code><a class="reference internal" href="_modules/bgd/errors.html#WrongComponentTypeError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.errors.WrongComponentTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised when a component of unrecognized type is
+attempted to be added to a <a class="reference internal" href="bgd.nn.html#bgd.nn.NeuralStack" title="bgd.nn.NeuralStack"><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.nn.NeuralStack</span></code></a>.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="bgd.errors.NonLearnableLayerError">
+<em class="property">exception </em><code class="descclassname">bgd.errors.</code><code class="descname">NonLearnableLayerError</code><a class="reference internal" href="_modules/bgd/errors.html#NonLearnableLayerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.errors.NonLearnableLayerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised to warn that an attempt to update
+parameter of a non-parametric layer has been attempted.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bgd.cost.html"
+                        title="previous chapter">bgd.cost module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bgd.initializers.html"
+                        title="next chapter">bgd.initializers module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bgd.errors.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.initializers.html" title="bgd.initializers module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bgd.cost.html" title="bgd.cost module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" >bgd package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

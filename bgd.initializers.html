@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bgd.initializers module &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bgd.layers module" href="bgd.layers.html" />
+    <link rel="prev" title="bgd.errors module" href="bgd.errors.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.layers.html" title="bgd.layers module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bgd.errors.html" title="bgd.errors module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" accesskey="U">bgd package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-bgd.initializers">
+<span id="bgd-initializers-module"></span><h1>bgd.initializers module<a class="headerlink" href="#module-bgd.initializers" title="Permalink to this headline">¶</a></h1>
+<p>This module contains contains all the initializers that
+are implemented. Any new initializer needs to inherit from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code> and to implement its
+abstract methods (<code class="xref py py-obj docutils literal notranslate"><span class="pre">_initialize</span></code>).</p>
+<dl class="class">
+<dt id="bgd.initializers.ZeroInitializer">
+<em class="property">class </em><code class="descclassname">bgd.initializers.</code><code class="descname">ZeroInitializer</code><a class="reference internal" href="_modules/bgd/initializers.html#ZeroInitializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.initializers.ZeroInitializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code></p>
+<p>Initializer for generating arrays of zeroes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> (<em>int</em>) – Seed for the random number generator.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.initializers.UniformInitializer">
+<em class="property">class </em><code class="descclassname">bgd.initializers.</code><code class="descname">UniformInitializer</code><span class="sig-paren">(</span><em>min_value=-0.05</em>, <em>max_value=0.05</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/initializers.html#UniformInitializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.initializers.UniformInitializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code></p>
+<p>Initializer for generating arrays using a uniform distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>min_value</strong> (<em>float</em>) – Lower bound of the uniform distribution.</li>
+<li><strong>max_value</strong> (<em>float</em>) – Upper bound of the uniform distribution.</li>
+<li><strong>seed</strong> (<em>int</em>) – Seed for the random number generator.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.initializers.GlorotUniformInitializer">
+<em class="property">class </em><code class="descclassname">bgd.initializers.</code><code class="descname">GlorotUniformInitializer</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/initializers.html#GlorotUniformInitializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.initializers.GlorotUniformInitializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code></p>
+<p>Initializer for generating arrays using a
+Glorot uniform distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> (<em>int</em>) – Seed for the random number generator.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.initializers.GaussianInitializer">
+<em class="property">class </em><code class="descclassname">bgd.initializers.</code><code class="descname">GaussianInitializer</code><span class="sig-paren">(</span><em>mean</em>, <em>stdv</em>, <em>truncated=False</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/initializers.html#GaussianInitializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.initializers.GaussianInitializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code></p>
+<p>Initializer for generating arrays using a
+Gaussian distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mean</strong> (<em>float</em>) – Mean of the Gaussian distribution.</li>
+<li><strong>stdv</strong> (<em>float</em>) – Standard deviation of the Gaussian distribution.</li>
+<li><strong>truncated</strong> (<em>bool</em>) – Whether to truncate the sampled values.</li>
+<li><strong>seed</strong> (<em>int</em>) – Seed for the random number generator.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.initializers.GlorotGaussianInitializer">
+<em class="property">class </em><code class="descclassname">bgd.initializers.</code><code class="descname">GlorotGaussianInitializer</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/initializers.html#GlorotGaussianInitializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.initializers.GlorotGaussianInitializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.initializers.Initializer</span></code></p>
+<p>Initializer for generating arrays using a
+Glorot Gaussian distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> (<em>int</em>) – Seed for the random number generator</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bgd.errors.html"
+                        title="previous chapter">bgd.errors module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bgd.layers.html"
+                        title="next chapter">bgd.layers module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bgd.initializers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.layers.html" title="bgd.layers module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bgd.errors.html" title="bgd.errors module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" >bgd package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

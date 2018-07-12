@@ -1,0 +1,427 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bgd.nn module &#8212; Beyond Gradient Descent 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bgd.operators module" href="bgd.operators.html" />
+    <link rel="prev" title="bgd.max_pooling module" href="bgd.max_pooling.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.operators.html" title="bgd.operators module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bgd.max_pooling.html" title="bgd.max_pooling module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" accesskey="U">bgd package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-bgd.nn">
+<span id="bgd-nn-module"></span><h1>bgd.nn module<a class="headerlink" href="#module-bgd.nn" title="Permalink to this headline">¶</a></h1>
+<p>This module contains the <a class="reference internal" href="#bgd.nn.NeuralStack" title="bgd.nn.NeuralStack"><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.nn.NeuralStack</span></code></a>
+class that represents a linear neural network (LNN).</p>
+<p>Any other model of neural nets shall be written down here.</p>
+<dl class="function">
+<dt id="bgd.nn.split_train_val">
+<code class="descclassname">bgd.nn.</code><code class="descname">split_train_val</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>validation_fraction</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#split_train_val"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.split_train_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits randomly the dataset (X, y) into a training set
+and a validation set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Matrix of samples. shape == (n_instances, n_features).</li>
+<li><strong>y</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Vector of expected outputs. shape == (n_instances,)
+or (n_instances, n_classes) if binarized.</li>
+<li><strong>validation_fraction</strong> (<em>float</em>) – Proportion of samples to be kept for validation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>X_train (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>):</dt>
+<dd><p class="first last">Matrix of training samples.
+len(X_train) == len(X) * (1 - validation_fraction)</p>
+</dd>
+<dt>y_train (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>):</dt>
+<dd><p class="first last">Vector of training expected outputs.
+len(y_train) == len(y) * (1 - validation_fraction)</p>
+</dd>
+<dt>X_test (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>):</dt>
+<dd><p class="first last">Matrix of test samples.
+len(X_test) == len(X) * validation_fraction</p>
+</dd>
+<dt>y_test (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>):</dt>
+<dd><p class="first last">Vector of test expected outputs.
+len(y_test) == len(y) * validation_fraction</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – If validation_fraction is not in [0, 1].</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bgd.nn.binarize_labels">
+<code class="descclassname">bgd.nn.</code><code class="descname">binarize_labels</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#binarize_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.binarize_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a N-valued vector of labels into a binary vector.
+If N classes are present, they <em>must</em> be 0 to N-1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>y</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Vector of classes.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>binary_y:</dt>
+<dd>Binary matrix of shape (n_instances, n_classes)
+s.t. <cite>binary_y[i,j] == 1</cite> iff <cite>y[i] == j</cite>.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binarize_labels</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">array([[1, 0],</span>
+<span class="go">       [0, 1],</span>
+<span class="go">       [1, 0],</span>
+<span class="go">       [1, 0],</span>
+<span class="go">       [0, 1],</span>
+<span class="go">       [0, 1],</span>
+<span class="go">       [1, 0]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bgd.nn.NeuralStack">
+<em class="property">class </em><code class="descclassname">bgd.nn.</code><code class="descname">NeuralStack</code><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Sequential model that can be viewed as a stack of layers.
+Backpropagation is simplified because the error gradient
+with respect to the parameters of any layer is the gradient
+of a composition of functions (defined by all successor layers)
+and is decomposed using the chain rule.</p>
+<dl class="attribute">
+<dt id="bgd.nn.NeuralStack.layers">
+<code class="descname">layers</code><a class="headerlink" href="#bgd.nn.NeuralStack.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – List of layers, where layers[0] is the input layer and
+layers[-1] is the output layer.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.nn.NeuralStack.batch_op">
+<code class="descname">batch_op</code><a class="headerlink" href="#bgd.nn.NeuralStack.batch_op" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.batch.Batching</span></code> – Batching method to use in order to perform one step of the
+backpropagation algorithm.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.nn.NeuralStack.cost_op">
+<code class="descname">cost_op</code><a class="headerlink" href="#bgd.nn.NeuralStack.cost_op" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.cost.Cost</span></code> – Error metric to use in order to evaluate model performance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bgd.nn.NeuralStack.optimizer">
+<code class="descname">optimizer</code><a class="headerlink" href="#bgd.nn.NeuralStack.optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bgd.optimizers.Optimizer</span></code> – Optimizer to use in order to update the parameters of the
+model during backpropagation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.activate_dropout">
+<code class="descname">activate_dropout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.activate_dropout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.activate_dropout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activates the Dropout layers (for training phase).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a component to the model: it can be either a layer
+or a special component like an optimizer. Some components
+are mandatory to train the model. The architecture of the
+model is defined by the layers that are provided to this
+method. Thus, the order is taken into account when adding
+layers. However, the order has no importance when adding
+special components like optimizers, error metrics, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component</strong> (<em>object</em>) – Component to add to the model (Layer or special component).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongComponentTypeError</span></code> – If the type of component is not recognized.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.check_components">
+<code class="descname">check_components</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.check_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.check_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that all the components are set properly so
+that training is possible. If either the batch method, the
+optimizer or the error function is missing, an exception
+will be raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RequiredComponentError</span></code> – If any component of the model has not been set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.deactivate_dropout">
+<code class="descname">deactivate_dropout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.deactivate_dropout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.deactivate_dropout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deactivates the Dropout layers (after training phase).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.eval">
+<code class="descname">eval</code><span class="sig-paren">(</span><em>X</em>, <em>start=0</em>, <em>stop=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feeds a sample (or batch) to the model linearly from any
+layer to any layer. By default, X is propagated through the
+entire stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – The sample (or batch of samples) to feed to the model.</li>
+<li><strong>start</strong> (<em>int</em>) – Index of the layer where X is to be fed.</li>
+<li><strong>stop</strong> (<em>int</em>) – Index of the last layer of propagation (-1 for last layer).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>out:</dt>
+<dd><p class="first last">Output of the propagation of X through each layer
+of the model.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.eval_loss">
+<code class="descname">eval_loss</code><span class="sig-paren">(</span><em>batch_y</em>, <em>predictions</em>, <em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.eval_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.eval_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the loss value of the output computed by the model
+with respect to the actual output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>batch_y</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – True labels of the samples.</li>
+<li><strong>predictions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Labels predicted by the model.</li>
+<li><strong>alpha</strong> (<em>float</em>) – L2 regularization alpha term (0 if no L2).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>loss:</dt>
+<dd><p class="first last">The value of the loss function.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bgd.nn.NeuralStack.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>epochs=1000</em>, <em>alpha_reg=0.0001</em>, <em>print_every=1</em>, <em>validation_fraction=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bgd/nn.html#NeuralStack.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bgd.nn.NeuralStack.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model on samples X and labels y. Optimize the model
+parameters so that the loss is minimized on this dataset.
+The validation fraction <em>must</em> be in [0, 1] (0 to not evaluate the
+model on a validation set).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Array of samples. <cite>shape == (n_instances, n_features)</cite> or
+<cite>shape == (n_instances, n_pixels, n_channels)</cite> for images.</li>
+<li><strong>y</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Array of labels. <cite>shape == (n_instances,)</cite></li>
+<li><strong>epochs</strong> (<em>int</em>) – Number of times the dataset (X, y) is entirely fed to the model.</li>
+<li><strong>alpha_reg</strong> (<em>float</em>) – L2 regularization alpha parameter (0 if no L2).</li>
+<li><strong>print_every</strong> (<em>int</em>) – Number of batches between two prints of model state and
+evaluations on the intermediate validation set (negative
+number if none is wanted). Defaults to 1.</li>
+<li><strong>validation_fraction</strong> (<em>float</em>) – Proportion of samples to be kept for validation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>errors:</dt>
+<dd><p class="first last">array of the loss of each batch.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – see <a class="reference internal" href="#bgd.nn.split_train_val" title="bgd.nn.split_train_val"><code class="xref py py-func docutils literal notranslate"><span class="pre">split_train_val()</span></code></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_in</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span> <span class="o">=</span> <span class="n">NeuralStack</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">FullyConnected</span><span class="p">(</span><span class="n">n_in</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">FullyConnected</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_out</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CrossEntropy</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">AdamOptimizer</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">SGDBatching</span><span class="p">(</span><span class="mi">512</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">losses</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">Loss at epoch 49 (batch 2): 1.2941039726880612   - Validation accuracy: 83.333%</span>
+<span class="go">Loss at epoch 99 (batch 2): 0.764482839362229    - Validation accuracy: 96.111%</span>
+<span class="go">Loss at epoch 149 (batch 2): 0.5154527368075816   - Validation accuracy: 97.222%</span>
+<span class="go">Loss at epoch 199 (batch 2): 0.3979498104086121   - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 249 (batch 2): 0.32569535096131924  - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 299 (batch 2): 0.2748402661346476   - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 349 (batch 2): 0.2555267910622358   - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 399 (batch 2): 0.22863001357754167  - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 449 (batch 2): 0.22746067257186584  - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 499 (batch 2): 0.22220948073377536  - Validation accuracy: 97.778%</span>
+<span class="go">Loss at epoch 549 (batch 2): 0.2089401746378744   - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 599 (batch 2): 0.20035077161054704  - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 649 (batch 2): 0.1867468456143161   - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 699 (batch 2): 0.17347271604108705  - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 749 (batch 2): 0.15376433332896908  - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 799 (batch 2): 0.15436015140582668  - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 849 (batch 2): 0.13860411664942396  - Validation accuracy: 98.889%</span>
+<span class="go">Loss at epoch 899 (batch 2): 0.133165375570591    - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 949 (batch 2): 0.12890010110436428  - Validation accuracy: 98.333%</span>
+<span class="go">Loss at epoch 999 (batch 2): 0.12433454132628034  - Validation accuracy: 98.333%</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loss over time:&#39;</span><span class="p">,</span> <span class="n">losses</span><span class="p">)</span>
+<span class="go">Errors: [ 2.50539121  2.28391007  2.40779468 ...,  0.11655055  0.12436938  0.09155006]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bgd.max_pooling.html"
+                        title="previous chapter">bgd.max_pooling module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bgd.operators.html"
+                        title="next chapter">bgd.operators module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bgd.nn.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bgd.operators.html" title="bgd.operators module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bgd.max_pooling.html" title="bgd.max_pooling module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Beyond Gradient Descent 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >bgd</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="bgd.html" >bgd package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Antoine Passemiers and Robin Petit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>
